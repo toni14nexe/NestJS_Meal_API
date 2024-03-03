@@ -26,12 +26,12 @@ export class DrinkController {
 
   @Get(':id')
   async getDrink(@Param('id') id: number): Promise<Drink | null> {
-    return this.drinkService.getDrink(id);
+    return this.drinkService.getDrink(Number(id));
   }
 
   @Delete(':id')
   async deleteDrink(@Param('id') id: number): Promise<Drink> {
-    return this.drinkService.deleteDrink(id);
+    return this.drinkService.deleteDrink(Number(id));
   }
 
   @Put(':id')
@@ -39,6 +39,6 @@ export class DrinkController {
     @Param('id') id: number,
     @Body() drinkData: Drink,
   ): Promise<Drink> {
-    return this.drinkService.updateDrink(id, drinkData);
+    return this.drinkService.updateDrink(Number(id), drinkData);
   }
 }

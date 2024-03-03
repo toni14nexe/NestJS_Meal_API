@@ -13,7 +13,7 @@ import { Menu } from './menu.model.ts';
 import { MenuService } from './menu.service';
 import { Request, Response } from 'express';
 
-@Controller('api/v1/menu')
+@Controller('api/v1/menus')
 export class MenuController {
   constructor(private readonly menuService: MenuService) {}
 
@@ -22,11 +22,9 @@ export class MenuController {
     @Req() request: Request,
     @Res() response: Response,
   ): Promise<any> {
-    const result = await this.menuService.getAllMenu();
+    const result = await this.menuService.getAllMenus();
     return response.status(200).json({
-      status: 'Ok!',
-      message: 'Successfully fetch data!',
-      result: result,
+      data: result,
     });
   }
 

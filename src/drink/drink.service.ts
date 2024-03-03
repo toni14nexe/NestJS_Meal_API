@@ -21,11 +21,7 @@ export class DrinkService {
   async updateDrink(id: number, data: Drink): Promise<Drink> {
     return this.prisma.drink.update({
       where: { id },
-      data: {
-        title: data.title,
-        imageUrl: data.imageUrl,
-        // Add other fields as needed
-      },
+      data: data,
     });
   }
 

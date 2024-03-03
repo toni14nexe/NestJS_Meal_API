@@ -1,6 +1,4 @@
-import { Prisma } from '@prisma/client';
-
-export class Drink implements Prisma.DrinkCreateInput {
+export interface Drink {
   id?: number;
   title: string;
   imageUrl?: string;

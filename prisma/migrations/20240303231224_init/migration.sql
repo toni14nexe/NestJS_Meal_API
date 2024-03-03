@@ -7,7 +7,9 @@ CREATE TABLE "Menu" (
     "desert" TEXT,
     "price" DOUBLE PRECISION NOT NULL,
     "imageUrl" TEXT,
-    "drinksIds" INTEGER[],
+    "drink" JSONB[],
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
 
     CONSTRAINT "Menu_pkey" PRIMARY KEY ("id")
 );
@@ -17,6 +19,8 @@ CREATE TABLE "Drink" (
     "id" SERIAL NOT NULL,
     "title" TEXT NOT NULL,
     "imageUrl" TEXT,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
 
     CONSTRAINT "Drink_pkey" PRIMARY KEY ("id")
 );

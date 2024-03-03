@@ -1,6 +1,4 @@
-import { Prisma } from '@prisma/client';
-
-export class Menu implements Prisma.MenuCreateInput {
+export interface Menu {
   id?: number;
   title: string;
   description?: string;
@@ -8,5 +6,5 @@ export class Menu implements Prisma.MenuCreateInput {
   desert?: string;
   price: number;
   imageUrl?: string;
-  drinksIds?: number[];
+  drink?: any;
 }

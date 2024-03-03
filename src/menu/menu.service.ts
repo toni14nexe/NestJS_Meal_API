@@ -6,7 +6,7 @@ import { Injectable } from '@nestjs/common';
 export class MenuService {
   constructor(private prisma: PrismaService) {}
 
-  async getAllMenu(): Promise<Menu[]> {
+  async getAllMenus(): Promise<Menu[]> {
     return this.prisma.menu.findMany();
   }
 
@@ -23,7 +23,7 @@ export class MenuService {
   async updateMenu(id: number, data: Menu): Promise<Menu> {
     return this.prisma.menu.update({
       where: { id: Number(id) },
-      data: { title: data.title, description: data.description },
+      data: data,
     });
   }
 
