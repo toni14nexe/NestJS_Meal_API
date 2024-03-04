@@ -18,13 +18,32 @@ export class MenuController {
   constructor(private readonly menuService: MenuService) {}
 
   @Get()
-  async getAllMenu(
+  async getMenus(
     @Req() request: Request,
     @Res() response: Response,
   ): Promise<any> {
-    const result = await this.menuService.getAllMenus();
+    const filterValues =
+      request?.query?.filter?.length || request?.query?.filter === 'all'
+        ? String(request?.query?.filter).split(',')
+        : undefined;
+    const filter = filterValues
+      ? filterValues.map((type) => ({ type }))
+      : undefined;
+
+    const query = {
+      page: Number(request?.query?.page) || 1,
+      perPage: Number(request?.query?.perPage) || 10,
+      sort: String(request?.query?.sort) || 'desc',
+      sortBy: String(request?.query?.sortBy) || 'title',
+      filter: filter,
+    };
+
+    const count = await this.menuService.getMenusCount(query.filter);
+    const data = await this.menuService.getMenus(query);
     return response.status(200).json({
-      data: result,
+      total: count,
+      ...query,
+      data: data,
     });
   }
 
