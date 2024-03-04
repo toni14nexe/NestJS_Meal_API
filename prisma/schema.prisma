@@ -4,12 +4,13 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
+  url = env("DATABASE_URL")
 }
 
 model Menu {
   id Int @id @default(autoincrement())
   title String
+  type String?
   description String?
   starter String?
   desert String?
@@ -35,16 +36,15 @@ model Order {
   updatedAt DateTime @updatedAt
 }
 
-model User {
+model Admin {
   id Int @id @default(autoincrement())
   username String @unique
   password String
-  role Role @default(user)
+  role Role @default(admin)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
 
 enum Role {
-  user
   admin
 }

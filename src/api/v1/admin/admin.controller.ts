@@ -1,14 +1,14 @@
 import { Controller, Post, Body, UnauthorizedException } from '@nestjs/common';
-import { UserService } from './user.service';
-import { User } from './user.model';
+import { AdminService } from './admin.service';
+import { Admin } from './admin.model';
 
-@Controller('api/v1/users')
-export class UserController {
-  constructor(private readonly userService: UserService) {}
+@Controller('api/v1/admin')
+export class AdminController {
+  constructor(private readonly adminService: AdminService) {}
 
   @Post()
-  async createUser(@Body() userData: User): Promise<User> {
-    return this.userService.createUser(userData);
+  async createUser(@Body() adminData: Admin): Promise<Admin> {
+    return this.adminService.createUser(adminData);
   }
 
   @Post('login')
@@ -16,7 +16,7 @@ export class UserController {
     @Body() loginData: { username: string; password: string },
   ): Promise<{ token: string }> {
     const { username, password } = loginData;
-    const token = await this.userService.authenticate(username, password);
+    const token = await this.adminService.authenticate(username, password);
 
     if (!token) throw new UnauthorizedException('Invalid credentials');
     return { token };

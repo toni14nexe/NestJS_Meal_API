@@ -1,6 +1,7 @@
 export interface Menu {
   id?: number;
   title: string;
+  type?: string;
   description?: string;
   starter?: string;
   desert?: string;

@@ -1,8 +1,8 @@
-export class User {
+export class Admin {
   id?: number;
   username: string;
   password: string;
-  role?: 'user' | 'admin';
+  role?: 'admin';
   createdAt?: Date;
   updatedAt?: Date;
 }

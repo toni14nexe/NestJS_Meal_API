@@ -1,10 +1,11 @@
 -- CreateEnum
-CREATE TYPE "Role" AS ENUM ('user', 'admin');
+CREATE TYPE "Role" AS ENUM ('admin');
 
 -- CreateTable
 CREATE TABLE "Menu" (
     "id" SERIAL NOT NULL,
     "title" TEXT NOT NULL,
+    "type" TEXT,
     "description" TEXT,
     "starter" TEXT,
     "desert" TEXT,
@@ -39,16 +40,16 @@ CREATE TABLE "Order" (
 );
 
 -- CreateTable
-CREATE TABLE "User" (
+CREATE TABLE "Admin" (
     "id" SERIAL NOT NULL,
     "username" TEXT NOT NULL,
     "password" TEXT NOT NULL,
-    "role" "Role" NOT NULL DEFAULT 'user',
+    "role" "Role" NOT NULL DEFAULT 'admin',
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
-    CONSTRAINT "User_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "Admin_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateIndex
-CREATE UNIQUE INDEX "User_username_key" ON "User"("username");
+CREATE UNIQUE INDEX "Admin_username_key" ON "Admin"("username");

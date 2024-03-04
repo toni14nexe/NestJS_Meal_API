@@ -9,8 +9,8 @@ import {
   Req,
   Res,
 } from '@nestjs/common';
-import { Menu } from './menu.model.ts';
-import { MenuService } from './menu.service';
+import { Menu } from './menu.model.ts.js';
+import { MenuService } from './menu.service.js';
 import { Request, Response } from 'express';
 
 @Controller('api/v1/menus')

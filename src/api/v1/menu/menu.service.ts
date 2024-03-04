@@ -1,5 +1,5 @@
 import { PrismaService } from 'src/prisma.service';
-import { Menu } from './menu.model.ts';
+import { Menu } from './menu.model.ts.js';
 import { Injectable } from '@nestjs/common';
 
 @Injectable()

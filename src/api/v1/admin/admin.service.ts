@@ -1,26 +1,26 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { PrismaService } from 'src/prisma.service';
-import { User } from './user.model';
+import { Admin } from './admin.model';
 import * as bcrypt from 'bcrypt';
 import * as jwt from 'jsonwebtoken';
 import { ConfigService } from '@nestjs/config';
 
 @Injectable()
-export class UserService {
+export class AdminService {
   constructor(
     private prisma: PrismaService,
     private configService: ConfigService,
   ) {}
 
-  async createUser(user: User): Promise<User> {
-    const hashedPassword = await bcrypt.hash(user.password, 10);
-    return this.prisma.user.create({
-      data: { ...user, password: hashedPassword },
+  async createUser(admin: Admin): Promise<Admin> {
+    const hashedPassword = await bcrypt.hash(admin.password, 10);
+    return this.prisma.admin.create({
+      data: { ...admin, password: hashedPassword },
     });
   }
 
-  async getUserByUsername(username: string): Promise<User | null> {
-    return this.prisma.user.findUnique({
+  async getUserByUsername(username: string): Promise<Admin | null> {
+    return this.prisma.admin.findUnique({
       where: { username },
     });
   }
