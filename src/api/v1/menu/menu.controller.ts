@@ -33,8 +33,8 @@ export class MenuController {
     const query = {
       page: Number(request?.query?.page) || 1,
       perPage: Number(request?.query?.perPage) || 10,
-      sort: String(request?.query?.sort) || 'desc',
-      sortBy: String(request?.query?.sortBy) || 'title',
+      sort: request?.query?.sort ? String(request?.query?.sort) : 'desc',
+      sortBy: request?.query?.sortBy ? String(request?.query?.sortBy) : 'title',
       filter: filter,
     };
 
